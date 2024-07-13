@@ -1,26 +1,26 @@
 class Solution {
     fun minimumOperations(nums: IntArray): Int {
-        var index : Int = 0
+        var steps_count : Int = 0
         while(true)
         {
-            var tmp : Int = nums.max()
+            var max_element : Int = nums.max()
             for( x in nums)
             {
-                if (x >0 && x<tmp)
+                if (x >0 && x<max_element)
                 {
-                    tmp=x
+                    max_element=x
                 }
             }
-            if(tmp<=0)
+            if(max_element<=0)
             {
                 break
             }
             for(i in 0..nums.size-1)
             {
-                nums[i]-=tmp
+                nums[i]-=max_element
             }
-            index++
+            steps_count++
         }
-        return index
+        return steps_count
     }
 }
