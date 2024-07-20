@@ -1,26 +1,20 @@
 class Solution {
     fun minimumOperations(nums: IntArray): Int {
-        var steps_count : Int = 0
-        while(true)
-        {
-            var max_element : Int = nums.max()
-            for( x in nums)
-            {
-                if (x >0 && x<max_element)
-                {
-                    max_element=x
-                }
-            }
-            if(max_element<=0)
-            {
+        var num_operation = 0
+        while (true) {
+            val filtred_nums = nums.filter { it > 0 }
+            if (filtred_nums.isEmpty()) {
                 break
             }
-            for(i in 0..nums.size-1)
-            {
-                nums[i]-=max_element
+            val min_element = filtred_nums.min()
+            for (index in nums.indices)/*
+        Когда я пишу for(number in nums), number считается val
+        и я не могу её менять(а очень хочется)
+        */ {
+                nums[index] -= min_element
             }
-            steps_count++
+            num_operation++
         }
-        return steps_count
+        return num_operation
     }
 }
